@@ -1,0 +1,195 @@
+<meta charset="UTF-8" />
+<style>
+  div {
+    margin-bottom: 5px;
+  }
+</style>
+
+<div>
+  <input id="username" placeholder="用户名" />
+  <input id="password" placeholder="密码" />
+  <button onclick="login()">登录</button>
+</div>
+<hr />
+<div>
+  <button onclick="getUserList()">获取用户列表</button>
+</div>
+<div>
+  <input id="add-user-username" placeholder="用户名" />
+  <input id="add-user-password" placeholder="密码" />
+  <button onclick="addUser()">添加用户</button>
+</div>
+<div>
+  <input id="edit-user-id" placeholder="用户ID" />
+  <input id="edit-user-username" placeholder="用户名" />
+  <input id="edit-user-password" placeholder="密码" />
+  <button onclick="editUser()">修改用户</button>
+</div>
+<div>
+  <input id="del-user-id" placeholder="用户ID" />
+  <button onclick="delUser()">删除用户</button>
+</div>
+<hr />
+<div>
+  <button onclick="getArticleList()">获取文章列表</button>
+</div>
+<div>
+  <input id="add-article-title" placeholder="文章标题" />
+  <input id="add-article-content" placeholder="文章内容" />
+  <button onclick="addArticle()">添加文章</button>
+</div>
+<div>
+  <input id="edit-article-id" placeholder="用户ID" />
+  <input id="edit-article-title" placeholder="文章标题" />
+  <input id="edit-article-content" placeholder="文章内容" />
+  <button onclick="editArticle()">修改文章</button>
+</div>
+<div>
+  <input id="del-article-id" placeholder="文章ID" />
+  <button onclick="delArticle()">删除文章</button>
+</div>
+<div>
+  <input id="detail-article-id" placeholder="文章ID" />
+  <button onclick="getArticleDetail()">获取文章详情</button>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+  // 创建一个 axios 实例
+  const request = axios.create({ baseURL: 'http://localhost:3000' })
+
+  // 请求拦截
+  request.interceptors.request.use(
+    config => {
+      if (localStorage.token) {
+        config.headers['Authorization'] = `Bearer ${localStorage.token}`
+      }
+      return config
+    },
+    error => {
+      return Promise.reject(error)
+    },
+  )
+
+  // 响应拦截
+  request.interceptors.response.use(
+    response => response.data,
+    error => {
+      const { data } = error.response
+      console.log('请求报错', data)
+      return Promise.reject(error)
+    },
+  )
+
+  function login() {
+    const params = {
+      username: document.querySelector('#username').value,
+      password: document.querySelector('#password').value,
+    }
+    request.post('/login', params).then(res => {
+      console.group('登录')
+      console.log(res)
+      localStorage.token = res.data.token
+      console.groupEnd()
+    })
+  }
+
+  function getUserList() {
+    request.post('/user/list').then(res => {
+      console.group('用户列表')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+
+  function addUser() {
+    const params = {
+      username: document.querySelector('#add-user-username').value,
+      password: document.querySelector('#add-user-password').value,
+    }
+    request.post('/user/add', params).then(res => {
+      console.group('添加用户')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+
+  function editUser() {
+    const params = {
+      id: +document.querySelector('#edit-id').value,
+      username: document.querySelector('#edit-user-username').value,
+      password: document.querySelector('#edit-user-password').value,
+    }
+    request.post('/user/edit', params).then(res => {
+      console.group('修改用户')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+
+  function delUser() {
+    const params = {
+      id: +document.querySelector('#del-user-id').value,
+    }
+    request.post('/user/del', params).then(res => {
+      console.group('删除用户')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+
+  function getArticleList() {
+    request.post('/article/list').then(res => {
+      console.group('文章列表')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+
+  function addArticle() {
+    const params = {
+      title: document.querySelector('#add-article-title').value,
+      content: document.querySelector('#add-article-content').value,
+    }
+    request.post('/article/add', params).then(res => {
+      console.group('添加文章')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+
+  function editArticle() {
+    const params = {
+      id: +document.querySelector('#edit-article-id').value,
+      title: document.querySelector('#edit-article-title').value,
+      content: document.querySelector('#edit-article-content').value,
+    }
+    request.post('/article/edit', params).then(res => {
+      console.group('修改文章')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+
+  function delArticle() {
+    const params = {
+      id: +document.querySelector('#del-article-id').value,
+    }
+    request.post('/article/del', params).then(res => {
+      console.group('删除文章')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+
+  function getArticleDetail() {
+    const params = {
+      id: +document.querySelector('#detail-article-id').value,
+    }
+    request.post('/article/detail', params).then(res => {
+      console.group('文章详情')
+      console.log(res)
+      console.groupEnd()
+    })
+  }
+</script>

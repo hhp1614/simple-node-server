@@ -1,0 +1,32 @@
+{
+  "name": "simple-node-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "watch": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "prettier": "@hhp-tools/prettier-config",
+  "nodemonConfig": {
+    "ignore": [
+      "./data/*.json"
+    ]
+  },
+  "devDependencies": {
+    "@hhp-tools/prettier-config": "^1.0.0",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-jwt": "^4.0.1",
+    "koa-router": "^10.1.1"
+  }
+}
