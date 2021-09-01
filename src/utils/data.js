@@ -19,7 +19,7 @@ const selectCallback = (value, condition) => {
  * @param {Object} condition 筛选条件
  * @return {Object|null}
  */
-module.exports.find = (data, condition) => data.find(v => selectCallback(v, condition)) ?? null
+module.exports.find = (data, condition) => data.find(v => selectCallback(v, condition)) || null
 
 /**
  * 查找一组数据
