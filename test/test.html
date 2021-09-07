@@ -56,62 +56,62 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
   // 创建一个 axios 实例
-  const request = axios.create({ baseURL: 'http://localhost:3000' })
+  const request = axios.create({ baseURL: 'http://localhost:3000' });
 
   // 请求拦截
   request.interceptors.request.use(
     config => {
       if (localStorage.token) {
-        config.headers['Authorization'] = `Bearer ${localStorage.token}`
+        config.headers['Authorization'] = `Bearer ${localStorage.token}`;
       }
-      return config
+      return config;
     },
     error => {
-      return Promise.reject(error)
+      return Promise.reject(error);
     },
-  )
+  );
 
   // 响应拦截
   request.interceptors.response.use(
     response => response.data,
     error => {
-      const { data } = error.response
-      console.log('请求报错', data)
-      return Promise.reject(error)
+      const { data } = error.response;
+      console.log('请求报错', data);
+      return Promise.reject(error);
     },
-  )
+  );
 
   function login() {
     const params = {
       username: document.querySelector('#username').value,
       password: document.querySelector('#password').value,
-    }
+    };
     request.post('/login', params).then(res => {
-      console.group('登录')
-      console.log(res)
-      localStorage.token = res.data.token
-      console.groupEnd()
-    })
+      console.group('登录');
+      console.log(res);
+      localStorage.token = res.data.token;
+      console.groupEnd();
+    });
   }
 
   function getUserList() {
     request.post('/user/list').then(res => {
-      console.group('用户列表')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('用户列表');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 
   function addUser() {
     const params = {
       username: document.querySelector('#add-user-username').value,
       password: document.querySelector('#add-user-password').value,
-    }
+    };
     request.post('/user/add', params).then(res => {
-      console.group('添加用户')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('添加用户');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 
   function editUser() {
@@ -119,43 +119,43 @@
       id: +document.querySelector('#edit-id').value,
       username: document.querySelector('#edit-user-username').value,
       password: document.querySelector('#edit-user-password').value,
-    }
+    };
     request.post('/user/edit', params).then(res => {
-      console.group('修改用户')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('修改用户');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 
   function delUser() {
     const params = {
       id: +document.querySelector('#del-user-id').value,
-    }
+    };
     request.post('/user/del', params).then(res => {
-      console.group('删除用户')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('删除用户');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 
   function getArticleList() {
     request.post('/article/list').then(res => {
-      console.group('文章列表')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('文章列表');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 
   function addArticle() {
     const params = {
       title: document.querySelector('#add-article-title').value,
       content: document.querySelector('#add-article-content').value,
-    }
+    };
     request.post('/article/add', params).then(res => {
-      console.group('添加文章')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('添加文章');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 
   function editArticle() {
@@ -163,33 +163,33 @@
       id: +document.querySelector('#edit-article-id').value,
       title: document.querySelector('#edit-article-title').value,
       content: document.querySelector('#edit-article-content').value,
-    }
+    };
     request.post('/article/edit', params).then(res => {
-      console.group('修改文章')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('修改文章');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 
   function delArticle() {
     const params = {
       id: +document.querySelector('#del-article-id').value,
-    }
+    };
     request.post('/article/del', params).then(res => {
-      console.group('删除文章')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('删除文章');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 
   function getArticleDetail() {
     const params = {
       id: +document.querySelector('#detail-article-id').value,
-    }
+    };
     request.post('/article/detail', params).then(res => {
-      console.group('文章详情')
-      console.log(res)
-      console.groupEnd()
-    })
+      console.group('文章详情');
+      console.log(res);
+      console.groupEnd();
+    });
   }
 </script>

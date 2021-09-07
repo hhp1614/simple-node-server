@@ -1,4 +1,4 @@
-const { createHash } = require('crypto')
+const { createHash } = require('crypto');
 
 /**
  * MD5 加密
@@ -6,7 +6,7 @@ const { createHash } = require('crypto')
  * @return {string}
  */
 module.exports.md5 = content => {
-  const hash = createHash('md5')
-  hash.update(content)
-  return hash.digest('hex')
-}
+  const hash = createHash('md5');
+  hash.update(content);
+  return hash.digest('hex');
+};

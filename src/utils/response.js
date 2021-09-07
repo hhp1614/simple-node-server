@@ -7,13 +7,13 @@
  * @return {*}
  */
 module.exports.response = (ctx, data, code = 10000, status = 200) => {
-  ctx.status = status
+  ctx.status = status;
   ctx.body = {
     code,
     data: typeof data === 'string' ? { msg: data } : data,
-  }
-  return ctx
-}
+  };
+  return ctx;
+};
 
 /**
  * 返回响应失败
@@ -21,4 +21,4 @@ module.exports.response = (ctx, data, code = 10000, status = 200) => {
  * @param {*} data 返回的数据
  * @return {*}
  */
-module.exports.fail = (ctx, data) => exports.response(ctx, data, 400, 400)
+module.exports.fail = (ctx, data) => exports.response(ctx, data, 400, 400);

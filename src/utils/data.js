@@ -7,11 +7,11 @@
 const selectCallback = (value, condition) => {
   for (const [k, v] of Object.entries(condition)) {
     if (value[k] !== v) {
-      return false
+      return false;
     }
   }
-  return true
-}
+  return true;
+};
 
 /**
  * 查找一条数据
@@ -19,7 +19,7 @@ const selectCallback = (value, condition) => {
  * @param {Object} condition 筛选条件
  * @return {Object|null}
  */
-module.exports.find = (data, condition) => data.find(v => selectCallback(v, condition)) || null
+module.exports.find = (data, condition) => data.find(v => selectCallback(v, condition)) || null;
 
 /**
  * 查找一组数据
@@ -27,7 +27,7 @@ module.exports.find = (data, condition) => data.find(v => selectCallback(v, cond
  * @param {Object} condition 筛选条件
  * @return {Object[]}
  */
-module.exports.select = (data, condition) => data.filter(v => selectCallback(v, condition))
+module.exports.select = (data, condition) => data.filter(v => selectCallback(v, condition));
 
 /**
  * 增加一条数据
@@ -39,10 +39,10 @@ module.exports.insert = (list, row) => {
   const data = {
     id: list[list.length - 1].id + 1,
     ...row,
-  }
-  list.push(data)
-  return true
-}
+  };
+  list.push(data);
+  return true;
+};
 
 /**
  * 更新一条数据
@@ -55,14 +55,14 @@ module.exports.update = (list, row) => {
     if (list[i].id === row.id) {
       Object.keys(row).forEach(k => {
         if (list[i][k] !== undefined && row[k]) {
-          list[i][k] = row[k]
+          list[i][k] = row[k];
         }
-      })
-      return true
+      });
+      return true;
     }
   }
-  return false
-}
+  return false;
+};
 
 /**
  * 根据 ID 删除一条数据
@@ -73,12 +73,12 @@ module.exports.update = (list, row) => {
 module.exports.remove = (list, id) => {
   for (let i = 0; i < list.length; i++) {
     if (list[i].id === id) {
-      list.splice(i, 1)
-      return true
+      list.splice(i, 1);
+      return true;
     }
   }
-  return false
-}
+  return false;
+};
 
 /**
  * 排除数据中的一些字段
@@ -87,15 +87,15 @@ module.exports.remove = (list, id) => {
  * @return {Object[]}
  */
 module.exports.excludeField = (data, field) => {
-  const fieldList = field.split(',').map(v => v.trim())
+  const fieldList = field.split(',').map(v => v.trim());
   const cut = obj => {
-    const newObj = {}
+    const newObj = {};
     for (const [k, v] of Object.entries(obj)) {
       if (!fieldList.includes(k)) {
-        newObj[k] = v
+        newObj[k] = v;
       }
     }
-    return newObj
-  }
-  return Array.isArray(data) ? data.map(item => cut(item)) : cut(data)
-}
+    return newObj;
+  };
+  return Array.isArray(data) ? data.map(item => cut(item)) : cut(data);
+};

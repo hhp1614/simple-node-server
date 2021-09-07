@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@hhp-tools/prettier-config': ^1.0.0
+  '@hhp-tools/prettier-config': ^1.0.1
   fs-extra: ^10.0.0
   jsonwebtoken: ^8.5.1
   koa: ^2.13.1
@@ -20,14 +20,14 @@ dependencies:
   koa-router: 10.1.1
 
 devDependencies:
-  '@hhp-tools/prettier-config': 1.0.0
+  '@hhp-tools/prettier-config': 1.0.1
   nodemon: 2.0.12
   prettier: 2.3.2
 
 packages:
 
-  /@hhp-tools/prettier-config/1.0.0:
-    resolution: {integrity: sha512-+PLEKrCykgCmu6+CMMp0LZNn706inY+FR8U9rDCieRLkgHU+fl7IdegJx5Uq3EU/lljfYe1UUOf2sY8c3JssmQ==}
+  /@hhp-tools/prettier-config/1.0.1:
+    resolution: {integrity: sha512-e4m9bv7L0wBaU4tqBdUfJk6Z3kIEOVgBTVGkH3ypyUCThlWGRtJrM9g3dTixqkvQIU7KAztlDvaEeTqwf6B2nQ==}
     dev: true
 
   /@sindresorhus/is/0.14.0:

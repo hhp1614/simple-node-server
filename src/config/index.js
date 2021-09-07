@@ -5,7 +5,7 @@ module.exports.defaultUserList = [
     username: 'root',
     password: '123456',
   },
-]
+];
 
 /** 默认文章 */
 module.exports.defaultArticleList = [
@@ -14,4 +14,4 @@ module.exports.defaultArticleList = [
     title: '测试文章1',
     content: '文章内容1',
   },
-]
+];
