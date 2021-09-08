@@ -36,7 +36,7 @@ npm start
 | `/user/list`      | 无                           | 无                           | 用户列表 |
 | `/user/add`       | `username`, `password`       | `string`, `string`           | 添加用户 |
 | `/user/edit`      | `id`, `username`, `password` | `number`, `string`, `string` | 修改用户 |
-| `/user/delete`    | `id`                         | `number`                     | 删除用户 |
+| `/user/del`       | `id`                         | `number`                     | 删除用户 |
 | `/article/list`   | 无                           | 无                           | 文章列表 |
 | `/article/add`    | `title`, `content`           | `string`, `string`           | 添加文章 |
 | `/article/edit`   | `id`, `title`, `content`     | `number`, `string`, `string` | 修改文章 |
